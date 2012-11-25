@@ -30,7 +30,7 @@ while ($row = mysql_fetch_assoc($res)){
     
     //Do work query here
     $wquery = "SELECT c.employer_name,e.job_title,e.start,e.end FROM employment e, company c, user u WHERE u.uid=e.uid AND c.cid=e.cid AND u.uid=$uid";
-    $wres = mysql_query($squery,$con);
+    $wres = mysql_query($wquery,$con);
     if (mysql_num_rows($wres)>0){
         echo "\t\t<WorkType>\n";
         while ($wrow = mysql_fetch_assoc($wres)){
