@@ -34,10 +34,10 @@ while ($row = mysql_fetch_assoc($res)){
     if (mysql_num_rows($wres)>0){
         echo "\t\t<WorkType>\n";
         while ($wrow = mysql_fetch_assoc($wres)){
-            echo "\t\t\t<CompanyName>".$wres['employer_name']."</CompanyName>\n";
-            echo "\t\t\t<Position>".$wres['job_title']."</JobTitle>\n";
-            echo "\t\t\t<From>".$wres['start']."</From>\n";
-            echo "\t\t\t<End>".$wres['end']."</End>\n";
+            echo "\t\t\t<CompanyName>".$wrow['employer_name']."</CompanyName>\n";
+            echo "\t\t\t<Position>".$wrow['job_title']."</JobTitle>\n";
+            echo "\t\t\t<From>".$wrow['start']."</From>\n";
+            echo "\t\t\t<End>".$wrow['end']."</End>\n";
         }
         echo "\t\t</WorkType>\n";
 
