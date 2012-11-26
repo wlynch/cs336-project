@@ -13,6 +13,7 @@ mysql_select_db("cs336",$con);
 $query = "SELECT * FROM user";
 //echo $query."\n";
 $res = mysql_query($query,$con);
+// If any errors, exit. This includes empty results
 if (!$res){
     die(mysql_error());
 }
@@ -24,7 +25,9 @@ while ($row = mysql_fetch_assoc($res)){
     echo "\t<UserType>\n";
     echo "\t\t<FirstName>".$row['firstname']."</FirstName>\n";
     echo "\t\t<LastName>".$row['lastname']."</LastName>\n";
-    echo "\t\t<EmailAddress>".$row['email']."</EmailAddress>\n";
+    if ($row['email']){
+        echo "\t\t<EmailAddress>".$row['email']."</EmailAddress>\n";
+    }
 
     $uid=$row['uid'];
     
@@ -36,8 +39,12 @@ while ($row = mysql_fetch_assoc($res)){
         while ($wrow = mysql_fetch_assoc($wres)){
             echo "\t\t\t<CompanyName>".$wrow['employer_name']."</CompanyName>\n";
             echo "\t\t\t<Position>".$wrow['job_title']."</JobTitle>\n";
-            echo "\t\t\t<From>".$wrow['start']."</From>\n";
-            echo "\t\t\t<End>".$wrow['end']."</End>\n";
+            if ($wrow['start']){
+                echo "\t\t\t<From>".$wrow['start']."</From>\n";
+            }
+            if ($wrow['end']){
+                echo "\t\t\t<End>".$wrow['end']."</End>\n";
+            }
         }
         echo "\t\t</WorkType>\n";
 
@@ -50,8 +57,12 @@ while ($row = mysql_fetch_assoc($res)){
         echo "\t\t<EduType>\n";
         while ($srow = mysql_fetch_assoc($sres)){
             echo "\t\t\t<SchoolName>".$srow['sname']."</SchoolName>\n";
-            echo "\t\t\t<Degree>".$srow['degree']."</Degree>\n";
-            echo "\t\t\t<Year>".date("Y",strtotime($srow['end']))."</Year>\n";
+            if ($srow['degree']){
+                echo "\t\t\t<Degree>".$srow['degree']."</Degree>\n";
+            }
+            if ($srow['end']){
+                echo "\t\t\t<Year>".date("Y",strtotime($srow['end']))."</Year>\n";
+            }
 
         }
         echo "\t\t</EduType>\n";
