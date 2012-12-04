@@ -6,6 +6,9 @@ Artist: <input type="text" name = "artist">
 <input type="submit" value="Search">
 </form>
 
+<p align=right> <a href="/musicSplash.php">Top Songs + Artists</a></p>
+<p><center><hr width=100% noshade=noshde></center><p>
+
 <?php
 
 $connection = mysql_connect("cs336-64.rutgers.edu","csuser","cs277315");

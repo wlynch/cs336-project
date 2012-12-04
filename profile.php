@@ -1,21 +1,44 @@
+<?php
+session_start();
+/* 
+ * If session user is not set, then this is the user that is logging in.
+ */
+if (!$_SESSION['user']){
+    //Set all the user information we want in session here.
+    $_SESSION['user']=$_POST['username'];
+}
+?>
+
 <html>
 <body>
 <a href="/" ><h1>Music Box</h1></a>
 A social music site for everyone!
 <p>
+<?php
+session_start();
+if ($_SESSION['user']){
+    echo "Logged in as: ".$_SESSION['user']."\n<br>\n";
+}
+
+?>
 <form method="get">
-Search username: <input type="text" name="username">
+Search user: <input type="text" name="username">
 <input type="submit" value="Search">
 </form>
-<p><center><hr width=100% noshade=noshde></center><p>
+
+<p align=right> <a href="/music.php">Top Songs + Artists</a></p>
+
+<p><center><hr width=100% noshade=noshade></center><p>
 
 <?php
+
+session_start();
 
 function messagebox($con, $user) {
 
     $message = mysql_query("SELECT u2.username sender, m.subject, m.time, m.content FROM user u1, user u2, message m WHERE u1.uid=m.ownerid AND u2.uid=m.senderid AND u1.username='$user'");
 
-    echo "<b>Message Box</b><br>";
+    echo "<p><b>Message Box</b><br>";
     if (mysql_num_rows($message) != 0) {
         while ($mes = mysql_fetch_array($message)) {
             echo "From: ".$mes['sender']."<br>";
@@ -29,6 +52,20 @@ function messagebox($con, $user) {
     }
 }
 
+function pending_friends($con, $user) {
+
+    $pending = mysql_query("SELECT u1.username requesting FROM user u1, user u2, pending_friend p WHERE u1.uid=p.requesting AND u2.uid=p.requested AND u2.username='$user'");
+
+    if (mysql_num_rows($pending) != 0) {
+        echo "<p><b>Friend requests</b><ul>";
+        while ($reqs = mysql_fetch_array($pending)) {
+            echo "<li>".$reqs['requesting'].": accept | reject</li>";
+        }
+        echo "</ul>";
+    } 
+}
+
+/* establish connection to database */
 $con = mysql_connect("cs336-64.rutgers.edu", "csuser", "cs277315");
 if (!$con) {
     die('cannot connect: '.mysql_error());
@@ -38,7 +75,7 @@ mysql_select_db("cs336", $con);
 
 $user = $_GET['username'];
 if (!$user){
-    $user=$_POST['username'];
+    $user=$_SESSION['user'];
 }
 if (!$user){
     exit();
@@ -104,17 +141,17 @@ if (mysql_num_rows($employment) != 0) {
     }
 }
 else {
-    echo "<p><b>Employment</b>: none :(";
+    echo "<p><b>Employment</b>: forever unemployed :(";
 }
 
 /* songs */
 echo "<p><b>Songs I like</b><br>";
 if (mysql_num_rows($songresult) != 0) {
+    echo "<ul>";
     while ($songs = mysql_fetch_array($songresult)) {
-        echo "<ul>";
         echo "<li>".$songs['sname']."</li>";
-        echo "</ul>";
     }
+    echo "</ul>";
 }
 else {
     echo "<i>None, add some please!</i>";
@@ -123,11 +160,11 @@ else {
 /* artists */
 echo "<p><b>Artists I like</b><br>";
 if (mysql_num_rows($artistresult) != 0) {
+    echo "<ul>";
     while ($artists = mysql_fetch_array($artistresult)) {
-        echo "<ul>";
         echo "<li>".$artists['name']."</li>";
-        echo "</ul>";
     }
+    echo "</ul>";
 }
 else {
     echo "<i>None, add some please!</i>";
@@ -136,11 +173,11 @@ else {
 /* interests */
 echo "<p><b>Interests</b><br>";
 if (mysql_num_rows($activityresult) != 0) {
+    echo "<ul>";
     while ($act = mysql_fetch_array($activityresult)) {
-        echo "<ul>";
         echo "<li>".$act['aname']."</li>";
-        echo "</ul>";
     }
+    echo "</ul>";
 }
 else {
     echo "<i>I am a boring person, I have no interests. :(</i>";
@@ -149,11 +186,11 @@ else {
 /* friend list */
 echo "<p><b>Friends</b><br>";
 if (mysql_num_rows($friendslist) != 0) {
+    echo "<ul>";
     while($friend = mysql_fetch_array($friendslist)) {
-        echo "<ul>";
         echo "<li>".$friend['username']."</li>";
-        echo "</ul>";
     }
+    echo "</ul>";
 }
 else {
     echo "<i>I have no friends, please add me!</i>";
@@ -163,11 +200,12 @@ else {
 if (mysql_num_rows($relationship)!= 0) {
     echo "<p><b>Relationship Status</b>: ";
     while ($rel = mysql_fetch_array($relationship)) {
-        echo $rel['status']." with ".$rel['firstname']." ".$rel['lastname']." (".$rel['username'].")<br><br>";
+        echo $rel['status']." with ".$rel['firstname']." ".$rel['lastname']." (".$rel['username'].")";
     }
 }
 
 messagebox($con, $user);
+pending_friends($con, $user);
 
 mysql_close($con);
 
