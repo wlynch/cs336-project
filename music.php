@@ -1,5 +1,5 @@
 <html><body>
-<a href="/" ><h1>Music Box</h1></a>
+<a href="/profile.php"><h1>Music Box</h1></a>
 A social music site for everyone!
 <p>
 <form action="profile.php" method="post">

@@ -1,5 +1,5 @@
 <HTML><BODY>
-<a href="/" ><h1>Music Box</h1></a>
+<a href="/profile.php"><h1>Music Box</h1></a>
 A social music site for everyone!
 <p align=right> <a href="/music.php">Top Songs + Artists</a></p>
 <p><center><hr width=100% noshade=noshade></center><p>
