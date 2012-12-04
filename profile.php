@@ -5,7 +5,10 @@ session_start();
  */
 if (!$_SESSION['user']){
     //Set all the user information we want in session here.
+    echo "a\n";
     $_SESSION['user']=$_POST['username'];
+} else {
+    echo $_SESSION['user'];
 }
 ?>
 

@@ -1,12 +1,20 @@
 <html><h1>Music Box</h1>
 A social music site for everyone<br>
 <body>
+
+<form action="/profile.php">
+username: <input type="text" name = "username">
+</form>
+
 <form method="get">
 Artist: <input type="text" name = "artist">
 <input type="submit" value="Search">
 </form>
 
-<p align=right> <a href="/musicSplash.php">Top Songs + Artists</a></p>
+
+
+
+<p align=right> <a href="/music.php">Top Songs + Artists</a></p>
 <p><center><hr width=100% noshade=noshde></center><p>
 
 <?php
