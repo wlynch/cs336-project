@@ -1,0 +1,114 @@
+mysql> use cs336;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from user;
++-----+---------+--------+-------------------------------------------------+-----------------+-----------+----------+--------------------------------+------------+
+| uid | photoid | gender | address                                         | username        | firstname | lastname | email                          | birth      |
++-----+---------+--------+-------------------------------------------------+-----------------+-----------+----------+--------------------------------+------------+
+|   0 | 0       | Male   | 148 Spruce Dr, Shrewsbury, NJ, USA              | ekamp           | Erik      | Kamp     | ekamp@eden.rutgers.edu         | 1991-05-22 |
+|   1 | 1       | Male   | 123 Billay Ln, Beaverton, OR, USA               | wlynch92        | Billy     | Lynch    | wlynch92@eden.rutgers.edu      | 1992-11-18 |
+|   2 | 2       | Female | 560 Windstone Trail, Alpharetta, GA, USA        | jennpeare       | Jenny     | Shi      | jenny.shi@rutgers.edu          | 1992-06-07 |
+|   3 | 3       | Female | 25 Sunflower Rd, Lawrence, KS, USA              | ksun92          | Kathy     | Sun      | kathy@rulingtheworld.com       | 1992-06-13 |
+|   4 | 4       | Female | 34 Tuscan Dr, Anaheim, CA, USA                  | vickishen23     | Vicki     | Shen     | ickivicki@gmail.com            | 1992-10-23 |
+|   5 | 5       | Male   | 65 Rue Jacques Ln, Toulouse, France             | sbubeck         | Sebastien | Bubeck   | lovemyaccent@princeton.edu     | 1985-04-16 |
+|   6 | 6       | Male   | 12 Leonardo Ct, Middletown, NJ, USA             | dchad           | Dan       | Chadwick | cthudawn@gmail.com             | 1991-09-15 |
+|   7 | 7       | Female | 15 New Rd, South Brunswick, NJ, USA             | guardGirl11     | Sarah     | Feldman  | srf73@rutgers.edu              | 1993-05-20 |
+|   8 | 8       | Male   | 888 Fafafa Ave, Hongkong, China                 | premedstudent   | Ho Wa     | Cheng    | luckyme@sina.com.cn            | 1988-08-08 |
+|   9 | 9       | Female | 14 Eva Ave, Estelline, SD, USA                  | lynn            | Janice    | Tsai     | pastmecomeback@gmail.com       | 1992-03-28 |
+|  10 | 10      | Male   | 123 Kawaiiness Blvd, Shibuya, Japan             | thebesthostever | Shiro     | Kuriwaki | cheapairmattress@princeton.edu | 1991-06-10 |
+|  11 | 11      | Female | E Nakhalpara Rd, Dhaka, Bangladesh              | thetorturedone  | Alaka     | Halder   | forevermia@facebook.com        | 1990-01-01 |
+|  12 | 12      | Male   | 54 Orchard Blvd, Singapore, Singapore           | jjlin           | Junjie    | Lin      | jjlin@oceanbutterflies.org     | 1981-03-27 |
+|  13 | 13      | Male   | 77 Fast Ln, Trelawny, Jamaica                   | lightningbolt   | Usain     | Bolt     | irunfast@olympics.org          | 1986-08-21 |
+|  14 | 14      | Male   | 39 Fairfax Ave, Oxford, England, United Kingdom | iheartchina     | Cody      | Abbey    | benjithepainter@hzgg.edu       | 1711-10-22 |
++-----+---------+--------+-------------------------------------------------+-----------------+-----------+----------+--------------------------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from attended;
++-----+-----+------------+------------+---------------------------------+
+| uid | sid | start      | end        | degree                          |
++-----+-----+------------+------------+---------------------------------+
+|   0 |   1 | 2010-09-10 | 2014-05-01 | Computer Science                |
+|   1 |   1 | 2010-09-10 | 2014-05-01 | Computer Science                |
+|   2 |   1 | 2010-09-10 | 2014-05-01 | Computer Science                |
+|   3 |   2 | 2010-09-15 | 2014-05-15 | Public Policy                   |
+|   4 |   1 | 2010-09-01 | 2014-05-01 | Economics                       |
+|   5 |   7 | 2005-09-15 | 2008-05-15 | Applied mathematics             |
+|   5 |   8 | 2010-09-10 | 2011-05-01 | Mathematics                     |
+|   6 |   3 | 2010-09-01 | 2014-05-01 | Civil Engineering               |
+|   7 |   1 | 2011-09-01 | 2015-05-01 | Biology                         |
+|   8 |   2 | 2010-09-15 | 2014-05-15 | Religion                        |
+|   9 |   1 | 2010-09-01 | 2014-05-01 | Political Science               |
+|  10 |   2 | 2010-09-15 | 2014-05-15 | Public Policy                   |
+|  11 |   2 | 2010-09-15 | 2014-05-15 | Anthropology                    |
+|  12 |   5 | 1996-09-01 | 2000-05-01 | Chinese                         |
+|  12 |   6 | 2000-09-01 | 2002-05-01 | Music                           |
+|  13 |   4 | 2004-08-15 | 2008-05-15 | Physical Education              |
+|  14 |   9 | 1729-09-15 | 1733-05-15 | Oriental Art and Painting       |
+|  14 |   9 | 1729-09-15 | 1733-05-15 | Asian Womens and Gender Studies |
++-----+-----+------------+------------+---------------------------------+
+18 rows in set (0.00 sec)
+
+mysql> select * from school;
++-----+------------------------------------+----------------------+
+| sid | sname                              | address              |
++-----+------------------------------------+----------------------+
+|   1 | Rutgers University                 | Piscataway, NJ, USA  |
+|   2 | Princeton University               | Princeton, NJ, USA   |
+|   3 | Lehigh University                  | Bethlehem, PA, USA   |
+|   4 | Kingston University of Technology  | Kingston, Jamaica    |
+|   5 | Anglo-Chinese School               | Singapore, Singapore |
+|   6 | Saint Andrews Junior College       | Singapore, Singapore |
+|   7 | Ecole Normale Superieure de Cachan | Cachan, France       |
+|   8 | Centre de Recerca Matematica       | Barcelona, Spain     |
+|   9 | Peking University                  | Beijing, China       |
++-----+------------------------------------+----------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employment;
++-------------------------+--------+-----+-----+------------+------------+
+| job_title               | salary | uid | cid | start      | end        |
++-------------------------+--------+-----+-----+------------+------------+
+| System Administrator    |     13 |   1 |   1 | 2011-09-01 | NULL       |
+| Lab Consultant          |      9 |   2 |   2 | 2012-01-25 | NULL       |
+| Chairwoman of Reunions  |     25 |   3 |  14 | 2010-09-15 | NULL       |
+| Caption Lady            |     13 |   3 |  15 | 2011-12-24 | NULL       |
+| Benevolent Dictator     |     33 |   3 |   8 | 2012-06-01 | NULL       |
+| Mad Scientist           |      2 |   4 |  10 | 1992-10-23 | NULL       |
+| Assistant Professor     |     70 |   5 |   3 | 2011-09-15 | NULL       |
+| Singer-Songwriter       |     44 |   8 |  12 | 2004-01-01 | 2011-01-01 |
+| Buddhist Monk           |      0 |   8 |  13 | 2010-01-02 | NULL       |
+| Campaign Secretary      |     18 |   9 |  11 | 2012-01-01 | 2012-11-06 |
+| Bubble Tea Delivery Boy |    100 |  10 |   9 | 2008-01-01 | NULL       |
+| Writing Tutor           |     10 |  11 |   3 | 2010-09-15 | 2012-05-15 |
+| Singer-Songwriter       |     80 |  12 |   4 | 2003-01-01 | 2011-06-01 |
+| Singer-Songwriter       |     90 |  12 |   5 | 2011-06-02 | NULL       |
+| Sprinter                |     50 |  13 |   7 | 2004-09-01 | NULL       |
+| Palace Painter          |     30 |  14 |   6 | 1735-01-01 | 1749-08-20 |
++-------------------------+--------+-----+-----+------------+------------+
+16 rows in set (0.00 sec)
+
+mysql> select * from company;
++-----+--------------------------------+------------------------+
+| cid | employer_name                  | address                |
++-----+--------------------------------+------------------------+
+|   1 | Rutgers LCSR                   | Piscataway, NJ, USA    |
+|   2 | Rutgers NBCS                   | New Brunswick, NJ, USA |
+|   3 | Princeton University           | Princeton, NJ, USA     |
+|   4 | Ocean Mutterflies Music        | Singapore, Singapore   |
+|   5 | Warner Music Taiwan            | Taipei, Taiwan         |
+|   6 | Aisin Gioro Family Company     | Beijing, China         |
+|   7 | Jamaican National Olympic Team | Kingston, Jamaica      |
+|   9 | Yakuza Crime Syndicate         | Tokyo, Japan           |
+|  10 | Shen Family Incorporated       | Anaheim, CA, USA       |
+|  11 | Frank Pallone                  | New Brunswick, NJ, USA |
+|  12 | UFO Record                     | Hong Kong, China       |
+|  13 | Buddhist Society of Hong Kong  | Hong Kong, China       |
+|  14 | Kathka Event Planning          | Topeka, KS, USA        |
+|  15 | HZGG Tumblr Inc, Ltd.          | Bridgewater, NJ, USA   |
+|   8 | iPartment Residential Assoc    | Shanghai, China        |
++-----+--------------------------------+------------------------+
+15 rows in set (0.00 sec)
+
+mysql> 

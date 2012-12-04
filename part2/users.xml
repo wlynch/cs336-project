@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Users>
+<User userID="0">
+	<FirstName>Erik</FirstName>
+	<LastName>Kamp</LastName>
+	<EmailAddress>ekamp@eden.rutgers.edu</EmailAddress>
+	<Education>
+		<SchoolName>Rutgers University</SchoolName>
+		<Degree>Computer Science</Degree>
+		<Year>2014</Year>
+	</Education>
+</User>
+<User userID="1">
+	<FirstName>Billy</FirstName>
+	<LastName>Lynch</LastName>
+	<EmailAddress>wlynch92@eden.rutgers.edu</EmailAddress>
+	<Education>
+		<SchoolName>Rutgers University</SchoolName>
+		<Degree>Computer Science</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Rutgers LCSR</CompanyName>
+		<Position>System Administrator</Position>
+		<From>2011-09-01</From>
+	</WorkExperience>
+</User>
+<User userID="2">
+	<FirstName>Jenny</FirstName>
+	<LastName>Shi</LastName>
+	<EmailAddress>jenny.shi@rutgers.edu</EmailAddress>
+	<Education>
+		<SchoolName>Rutgers University</SchoolName>
+		<Degree>Computer Science</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Rutgers NBCS</CompanyName>
+		<Position>Lab Consultant</Position>
+		<From>2012-01-25</From>
+	</WorkExperience>
+</User>
+<User userID="3">
+	<FirstName>Kathy</FirstName>
+	<LastName>Sun</LastName>
+	<EmailAddress>kathy@rulingtheworld.com</EmailAddress>
+	<Education>
+		<SchoolName>Princeton University</SchoolName>
+		<Degree>Public Policy</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>iPartment Residential Assoc</CompanyName>
+		<Position>Benevolent Dictator</Position>
+		<From>2012-06-01</From>
+	</WorkExperience>
+	<WorkExperience>
+		<CompanyName>Kathka Event Planning</CompanyName>
+		<Position>Chairwoman of Reunions</Position>
+		<From>2010-09-15</From>
+	</WorkExperience>
+	<WorkExperience>
+		<CompanyName>HZGG Tumblr Inc, Ltd.</CompanyName>
+		<Position>Caption Lady</Position>
+		<From>2011-12-24</From>
+	</WorkExperience>
+</User>
+<User userID="4">
+	<FirstName>Vicki</FirstName>
+	<LastName>Shen</LastName>
+	<EmailAddress>ickivicki@gmail.com</EmailAddress>
+	<Education>
+		<SchoolName>Rutgers University</SchoolName>
+		<Degree>Economics</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Shen Family Incorporated</CompanyName>
+		<Position>Mad Scientist</Position>
+		<From>1992-10-23</From>
+	</WorkExperience>
+</User>
+<User userID="5">
+	<FirstName>Sebastien</FirstName>
+	<LastName>Bubeck</LastName>
+	<EmailAddress>lovemyaccent@princeton.edu</EmailAddress>
+	<Education>
+		<SchoolName>Ecole Normale Superieure de Cachan</SchoolName>
+		<Degree>Applied mathematics</Degree>
+		<Year>2008</Year>
+	</Education>
+	<Education>
+		<SchoolName>Centre de Recerca Matematica</SchoolName>
+		<Degree>Mathematics</Degree>
+		<Year>2011</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Princeton University</CompanyName>
+		<Position>Assistant Professor</Position>
+		<From>2011-09-15</From>
+	</WorkExperience>
+</User>
+<User userID="6">
+	<FirstName>Dan</FirstName>
+	<LastName>Chadwick</LastName>
+	<EmailAddress>cthudawn@gmail.com</EmailAddress>
+	<Education>
+		<SchoolName>Lehigh University</SchoolName>
+		<Degree>Civil Engineering</Degree>
+		<Year>2014</Year>
+	</Education>
+</User>
+<User userID="7">
+	<FirstName>Sarah</FirstName>
+	<LastName>Feldman</LastName>
+	<EmailAddress>srf73@rutgers.edu</EmailAddress>
+	<Education>
+		<SchoolName>Rutgers University</SchoolName>
+		<Degree>Biology</Degree>
+		<Year>2015</Year>
+	</Education>
+</User>
+<User userID="8">
+	<FirstName>Ho Wa</FirstName>
+	<LastName>Cheng</LastName>
+	<EmailAddress>luckyme@sina.com.cn</EmailAddress>
+	<Education>
+		<SchoolName>Princeton University</SchoolName>
+		<Degree>Religion</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>UFO Record</CompanyName>
+		<Position>Singer-Songwriter</Position>
+		<From>2004-01-01</From>
+		<To>2011-01-01</To>
+	</WorkExperience>
+	<WorkExperience>
+		<CompanyName>Buddhist Society of Hong Kong</CompanyName>
+		<Position>Buddhist Monk</Position>
+		<From>2010-01-02</From>
+	</WorkExperience>
+</User>
+<User userID="9">
+	<FirstName>Janice</FirstName>
+	<LastName>Tsai</LastName>
+	<EmailAddress>pastmecomeback@gmail.com</EmailAddress>
+	<Education>
+		<SchoolName>Rutgers University</SchoolName>
+		<Degree>Political Science</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Frank Pallone</CompanyName>
+		<Position>Campaign Secretary</Position>
+		<From>2012-01-01</From>
+		<To>2012-11-06</To>
+	</WorkExperience>
+</User>
+<User userID="10">
+	<FirstName>Shiro</FirstName>
+	<LastName>Kuriwaki</LastName>
+	<EmailAddress>cheapairmattress@princeton.edu</EmailAddress>
+	<Education>
+		<SchoolName>Princeton University</SchoolName>
+		<Degree>Public Policy</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Yakuza Crime Syndicate</CompanyName>
+		<Position>Bubble Tea Delivery Boy</Position>
+		<From>2008-01-01</From>
+	</WorkExperience>
+</User>
+<User userID="11">
+	<FirstName>Alaka</FirstName>
+	<LastName>Halder</LastName>
+	<EmailAddress>forevermia@facebook.com</EmailAddress>
+	<Education>
+		<SchoolName>Princeton University</SchoolName>
+		<Degree>Anthropology</Degree>
+		<Year>2014</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Princeton University</CompanyName>
+		<Position>Writing Tutor</Position>
+		<From>2010-09-15</From>
+		<To>2012-05-15</To>
+	</WorkExperience>
+</User>
+<User userID="12">
+	<FirstName>Junjie</FirstName>
+	<LastName>Lin</LastName>
+	<EmailAddress>jjlin@oceanbutterflies.org</EmailAddress>
+	<Education>
+		<SchoolName>Anglo-Chinese School</SchoolName>
+		<Degree>Chinese</Degree>
+		<Year>2000</Year>
+	</Education>
+	<Education>
+		<SchoolName>Saint Andrews Junior College</SchoolName>
+		<Degree>Music</Degree>
+		<Year>2002</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Ocean Mutterflies Music</CompanyName>
+		<Position>Singer-Songwriter</Position>
+		<From>2003-01-01</From>
+		<To>2011-06-01</To>
+	</WorkExperience>
+	<WorkExperience>
+		<CompanyName>Warner Music Taiwan</CompanyName>
+		<Position>Singer-Songwriter</Position>
+		<From>2011-06-02</From>
+	</WorkExperience>
+</User>
+<User userID="13">
+	<FirstName>Usain</FirstName>
+	<LastName>Bolt</LastName>
+	<EmailAddress>irunfast@olympics.org</EmailAddress>
+	<Education>
+		<SchoolName>Kingston University of Technology</SchoolName>
+		<Degree>Physical Education</Degree>
+		<Year>2008</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Jamaican National Olympic Team</CompanyName>
+		<Position>Sprinter</Position>
+		<From>2004-09-01</From>
+	</WorkExperience>
+</User>
+<User userID="14">
+	<FirstName>Cody</FirstName>
+	<LastName>Abbey</LastName>
+	<EmailAddress>benjithepainter@hzgg.edu</EmailAddress>
+	<Education>
+		<SchoolName>Peking University</SchoolName>
+		<Degree>Asian Womens and Gender Studies</Degree>
+		<Year>1733</Year>
+	</Education>
+	<Education>
+		<SchoolName>Peking University</SchoolName>
+		<Degree>Oriental Art and Painting</Degree>
+		<Year>1733</Year>
+	</Education>
+	<WorkExperience>
+		<CompanyName>Aisin Gioro Family Company</CompanyName>
+		<Position>Palace Painter</Position>
+		<From>1735-01-01</From>
+		<To>1749-08-20</To>
+	</WorkExperience>
+</User>
+</Users>
