@@ -1,38 +1,27 @@
-<?php
-session_start();
-/* 
- * If session user is not set, then this is the user that is logging in.
- */
-if (!$_SESSION['user']){
-    //Set all the user information we want in session here.
-    echo "a\n";
-    $_SESSION['user']=$_POST['username'];
-} else {
-    echo $_SESSION['user'];
-}
-?>
-
 <html>
+<head><title>My Profile</title></head>
 <body>
 <a href="/profile.php"><h1>Music Box</h1></a>
-A social music site for everyone!
-<p>
+A social music site for everyone!<p>
+<div>
 <?php
 session_start();
-if ($_SESSION['user']){
-    echo "Logged in as: ".$_SESSION['user']."\n<br>\n";
+if($_SESSION['username']){
+    #echo "<br>";
+    echo "<div align = \"left\"> <a href=\"/logout.php\">Logout</a><br></div>";
 }
-
+if ($_SESSION['username']){
+    echo "Logged in as: ".$_SESSION['username']."\n<br>\n";
+}
 ?>
 <form method="get">
 Search user: <input type="text" name="username">
 <input type="submit" value="Search">
 </form>
-
+<div align = "right">
 <p align=right> <a href="/music.php">Top Songs + Artists</a></p>
-
-<p><center><hr width=100% noshade=noshade></center><p>
-
+<p align=right> <a href="/artistfind.php">Search for an Artist</a></p>
+<p align=right> <a href="/random.php">Site Info and Facts</a></p>
 <?php
 
 session_start();
@@ -55,14 +44,23 @@ function messagebox($con, $user) {
     }
 }
 
+
 function pending_friends($con, $user) {
 
-    $pending = mysql_query("SELECT u1.username requesting FROM user u1, user u2, pending_friend p WHERE u1.uid=p.requesting AND u2.uid=p.requested AND u2.username='$user'");
+    $pending = mysql_query("SELECT u1.username requesting, u1.uid uid FROM user u1, user u2, pending_friend p WHERE u1.uid=p.requesting AND u2.uid=p.requested AND u2.username='$user'");
 
     if (mysql_num_rows($pending) != 0) {
         echo "<p><b>Friend requests</b><ul>";
         while ($reqs = mysql_fetch_array($pending)) {
-            echo "<li>".$reqs['requesting'].": accept | reject</li>";
+            echo "<li>".$reqs['requesting'];
+            $_SESSION['requesting'] = $reqs['uid'];
+?>
+                    <form method="post" action="/friendreq.php">
+                    <input type="radio" name="friendreq" value="accept">accept
+                    <input type="radio" name="friendreq" value="ignore">ignore
+                    <input type="submit" name="sub" value="confirm">
+                    </form>
+<?php
         }
         echo "</ul>";
     } 
@@ -78,29 +76,83 @@ mysql_select_db("cs336", $con);
 
 $user = $_GET['username'];
 if (!$user){
-    $user=$_SESSION['user'];
+    $_SESSION['ownerID'] = $user;
+    $user=$_SESSION['username'];
 }
 if (!$user){
     exit();
 }
 
+$nouser = 0; /* flag to limit 'send message' and 'add friend' to valid users */
+$checkuser = mysql_query("SELECT * FROM user WHERE username='$user'");
+if (mysql_num_rows($checkuser) == 0) {
+    $nouser = 1;
+}
+
+
+/* CHECK FOR SPECIAL CASES TO NOT DISPLAY 'ADD FRIEND' */
+
+/* if user is already friends with you */
+$friendslist = mysql_query("SELECT u2.username FROM user u1, user u2, friend f WHERE ((u1.uid=f.user1 AND u2.uid=f.user2) OR (u1.uid=f.user2 AND u2.uid=f.user1)) AND (u1.username='$user')");
+$friends = 0;
+if (mysql_num_rows($friendslist) != 0) {
+    #echo "YOUR FRIENDS";
+    while($friend = mysql_fetch_array($friendslist)) {
+        if ($_SESSION['username'] == $friend['username']) {
+            $friends = 1;
+        }
+    }
+}
+
+$curr = $_SESSION['username'];
+$requestedFriend = 0;
+
+/* logged in user cannot be added again by requesting user */
+$pending = mysql_query("SELECT u1.username as requesting, u1.uid as uid FROM user u1, user u2, pending_friend p WHERE u1.uid=p.requesting AND u2.uid=p.requested AND u2.username='$user'");
+if (mysql_num_rows($pending) != 0) {
+    while ($reqs = mysql_fetch_array($pending)) {
+        if($_SESSION['username'] == $reqs['requesting']) {
+            $requestedFriend = 1;
+        }
+    }
+}
+
+/* viewed user cannot add the requesting user */
+$currpending = mysql_query("SELECT u1.username as requesting FROM user u1, user u2, pending_friend p WHERE u1.uid=p.requesting AND u2.uid=p.requested AND u2.username='$curr'");
+if (mysql_num_rows($currpending) != 0) {
+    while ($req = mysql_fetch_array($currpending)) {
+        if ($user == $req['requesting']) {
+            $requestedFriend = 1;
+        }
+    }
+}
+
+if ($nouser == 0) {
+    if ($user != $_SESSION['username']) {
+        echo "<p align=right> <a href=\"/message.php\">Send message</a></p>";
+    }
+    if ($user == $_SESSION['username']) {
+        echo "<p align=right> <a href=\"/editProfile.php\">Edit my profile</a></p>";
+    }
+    if ($user != $_SESSION['username'] AND $friends == 0 AND $requestedFriend == 0) {	
+        echo "<p align=right> <a href=\"/addfriend.php\">+ Add as friend</a></p>";
+    }
+}
+
+echo "</div></div><p><center><hr width=100% noshade=noshade></center><p>";
+
+/* Queries for user information */
+
 $userinfo = mysql_query("SELECT * FROM user u WHERE u.username='$user'");
-
 $education = mysql_query("SELECT * FROM user u, attended a, school s WHERE u.uid=a.uid AND a.sid=s.sid AND u.username='$user'");
-
 $employment = mysql_query("SELECT * FROM user u, company c, employment e WHERE u.uid=e.uid AND c.cid=e.cid AND u.username='$user'");
-
 $songresult = mysql_query("SELECT * FROM user u, song s, likesSong ls WHERE ls.sid = s.sid AND ls.uid = u.uid AND u.username ='$user'
     GROUP BY s.sname");
-
 $artistresult = mysql_query("SELECT * FROM user u, artist a, likesArtist la WHERE la.aid = a.aid AND la.uid = u.uid AND u.username = '$user' GROUP BY name");
-
 $activityresult = mysql_query("SELECT * FROM user u, activity a, interested_in i WHERE i.uid = u.uid AND i.actid = a.aid AND u.username = '$user' Group BY aname");
-
 $friendslist = mysql_query("SELECT u2.username FROM user u1, user u2, friend f WHERE ((u1.uid=f.user1 AND u2.uid=f.user2) OR (u1.uid=f.user2 AND u2.uid=f.user1)) AND (u1.username='$user')");
-
+$mutualfriends = mysql_query("SELECT u2.username FROM user u1, user u2, friend f WHERE ((u1.uid=f.user1 AND u2.uid=f.user2) OR (u1.uid=f.user2 AND u2.uid=f.user1)) AND (u1.username='$curr') AND u2.username IN (SELECT u2.username FROM user u1, user u2, friend f WHERE ((u1.uid=f.user1 AND u2.uid=f.user2) OR (u1.uid=f.user2 AND u2.uid=f.user1)) AND (u1.username='$user'))");
 $relationship = mysql_query("select u2.firstname, u2.lastname, r.status, u2.username from user u1, user u2, in_relationship_with r WHERE ((u1.uid=r.user1 AND u2.uid=r.user2) OR (u1.uid=r.user2 AND u2.uid=r.user1)) AND (u1.username = '$user')");
-
 
 /* user info */
 if (mysql_num_rows($userinfo) == 0) {
@@ -109,8 +161,14 @@ if (mysql_num_rows($userinfo) == 0) {
 else {
     $userrow = mysql_fetch_array($userinfo);
     echo "<b>".$userrow['firstname']." ".$userrow['lastname']."</b><br>";
-    echo "<img src=".$userrow['picurl'].", width=200 height=200><br>";
+    if ($userrow['picurl'] != NULL) {
+        echo "<img src=".$userrow['picurl']." width=200 height=200><br>";
+    }
+    else {
+        echo "<img src=http://i47.tinypic.com/30rxys8.jpg width=200 height=200><br>";
+    }
     echo "Username: ".$userrow['username']."<br>";
+
     echo "Gender: ".$userrow['gender']."<br>";
     echo "Birthday: ".$userrow['birth']."<br>";
     echo "Address: ".$userrow['address']."<br>";
@@ -199,6 +257,21 @@ else {
     echo "<i>I have no friends, please add me!</i>";
 }
 
+/* mutual friends list */
+if ($user != $_SESSION['username']) {
+    echo "<p><b>Mutual Friends</b><br>";
+    if (mysql_num_rows($mutualfriends) != 0) {
+        echo "<ul>";
+        while($mfriend = mysql_fetch_array($mutualfriends)) {
+            echo "<li>".$mfriend['username']."</li>";
+        }
+        echo "</ul>";
+    }
+    else {
+        echo "<i>No mutual friends.</i>";
+    }
+}
+
 /* relationship status */
 if (mysql_num_rows($relationship)!= 0) {
     echo "<p><b>Relationship Status</b>: ";
@@ -207,11 +280,16 @@ if (mysql_num_rows($relationship)!= 0) {
     }
 }
 
-messagebox($con, $user);
-pending_friends($con, $user);
+
+$_SESSION['receiver'] = $user;
+
+if ($user == $_SESSION['username']) {
+    messagebox($con, $user);
+    pending_friends($con, $user);
+}
 
 mysql_close($con);
 
 ?>
-</body>
-</html>
+        </body>
+        </html>

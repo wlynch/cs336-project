@@ -1,20 +1,24 @@
 <html><body>
 <a href="/profile.php"><h1>Music Box</h1></a>
 A social music site for everyone!
+<br>
+<a href="/logout.php">Logout</a>
 <p>
-<form action="profile.php" method="post">
-Username: <input type="text" name="username">
+<form action="/artistfind.php" method="post">
+Artist: <input type="text" name="artist">
 <input type="submit" value="Search">
 </form>
 <p align=right> <a href="/music.php">Top Songs + Artists</a></p>
 <p><center><hr width=100% noshade=noshade></center><p>
 
 <?php
+session_start();
 
 $con = mysql_connect("cs336-64.rutgers.edu", "csuser", "cs277315");
 if (!$con) {
     die('cannot connect: '.mysql_error());
 }
+
 
 mysql_select_db("cs336", $con);
 
