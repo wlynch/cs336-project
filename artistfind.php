@@ -94,6 +94,8 @@ if ($artist){
                 $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
                 $query="select * from likesSong where sid = ".$srow['sid']." and uid = ".$_SESSION['uid'];
                 $alreadyLikes = mysql_query($query);
+
+                echo "<hr align=left width=10% noshade=noshade>";
                 if (mysql_num_rows($alreadyLikes)==0)
                 {
                     echo "<form action=\"/likeSong.php\" method=\"post\" style=\"margin: 0; padding: 0;\">";
