@@ -1,15 +1,30 @@
-<html><body>
+<html>
+<head><title>Top Songs & Artists </title></head>
+<body>
 <a href="/profile.php"><h1>Music Box</h1></a>
-A social music site for everyone!
-<br>
-<a href="/logout.php">Logout</a>
-<p>
+A social music site for everyone!<p>
+
+<?php
+session_start();
+if($_SESSION['username']){
+    #echo "<br>";
+    echo "<div align = \"left\"> <a href=\"/logout.php\">Logout</a><br></div>";
+}
+if ($_SESSION['username']){
+    echo "Logged in as: ".$_SESSION['username']."\n<p>\n";
+}
+?>
+
+<div align=right>
+| <a href="/music.php">Top Songs & Artists</a> |
+<a href="/artistfind.php">Search for Artist</a> |
+<a href="/random.php">Site Info and Facts</a> |
+</div>
+<p><center><hr width=100% noshade=noshade></center><p>
 <form action="/artistfind.php" method="post">
-Artist: <input type="text" name="artist">
+Search for artist: <input type="text" name="artist">
 <input type="submit" value="Search">
 </form>
-<p align=right> <a href="/music.php">Top Songs + Artists</a></p>
-<p><center><hr width=100% noshade=noshade></center><p>
 
 <?php
 session_start();
@@ -25,6 +40,9 @@ mysql_select_db("cs336", $con);
 $topSongs = mysql_query("select s.sname, count(*) as count from likesSong l, song s where s.sid = l.sid group by l.sid order by count DESC");
 
 $topArtists = mysql_query("select a.name, count(*) as count from likesArtist l, artist a where a.aid = l.aid group by l.aid order by count DESC");
+
+
+echo "<center><h2>The Popularity Chart</h2></center>";
 
 echo "<p><b>Top 10 Songs</b><ul>";
 $counter = 0;

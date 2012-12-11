@@ -3,8 +3,21 @@
 <head><title>Send Message</title></head>
 
 <body>
+
 <h1><a href="/profile.php">Music Box</a></h1>
-A social music site for everyone!
+A social music site for everyone!<p>
+
+<?php
+session_start();
+if($_SESSION['username']){
+    #echo "<br>";
+    echo "<div align = \"left\"> <a href=\"/logout.php\">Logout</a><br></div>";
+}
+if ($_SESSION['username']){
+    echo "Logged in as: ".$_SESSION['username']."\n<p>\n";
+}
+?>
+
 <p><center><hr width=100% noshade=noshade></center>
 
 <?php

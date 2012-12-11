@@ -3,7 +3,6 @@
 <body>
 <a href="/profile.php"><h1>Music Box</h1></a>
 A social music site for everyone!<p>
-<div>
 <?php
 session_start();
 if($_SESSION['username']){
@@ -11,17 +10,18 @@ if($_SESSION['username']){
     echo "<div align = \"left\"> <a href=\"/logout.php\">Logout</a><br></div>";
 }
 if ($_SESSION['username']){
-    echo "Logged in as: ".$_SESSION['username']."\n<br>\n";
+    echo "Logged in as: ".$_SESSION['username']."\n<p>\n";
 }
 ?>
 <form method="get">
 Search user: <input type="text" name="username">
 <input type="submit" value="Search">
 </form>
-<div align = "right">
-<p align=right> <a href="/music.php">Top Songs + Artists</a></p>
-<p align=right> <a href="/artistfind.php">Search for an Artist</a></p>
-<p align=right> <a href="/random.php">Site Info and Facts</a></p>
+<div align="right">
+|
+<a href="/music.php">Top Songs & Artists</a> | 
+<a href="/artistfind.php">Search for Artist</a> | 
+<a href="/random.php">Site Info and Facts</a> |
 <?php
 
 session_start();
@@ -89,7 +89,6 @@ if (mysql_num_rows($checkuser) == 0) {
     $nouser = 1;
 }
 
-
 /* CHECK FOR SPECIAL CASES TO NOT DISPLAY 'ADD FRIEND' */
 
 /* if user is already friends with you */
@@ -129,17 +128,17 @@ if (mysql_num_rows($currpending) != 0) {
 
 if ($nouser == 0) {
     if ($user != $_SESSION['username']) {
-        echo "<p align=right> <a href=\"/message.php\">Send message</a></p>";
+        echo "<a href=\"/message.php\">Send message</a> | ";
     }
     if ($user == $_SESSION['username']) {
-        echo "<p align=right> <a href=\"/editProfile.php\">Edit my profile</a></p>";
+        echo "<a href=\"/editProfile.php\">Edit my profile</a> |";
     }
     if ($user != $_SESSION['username'] AND $friends == 0 AND $requestedFriend == 0) {	
-        echo "<p align=right> <a href=\"/addfriend.php\">+ Add as friend</a></p>";
+        echo "<a href=\"/addfriend.php\">Add as friend</a> |";
     }
 }
 
-echo "</div></div><p><center><hr width=100% noshade=noshade></center><p>";
+echo "</div><p><center><hr width=100% noshade=noshade></center><p>";
 
 /* Queries for user information */
 

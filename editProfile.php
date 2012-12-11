@@ -146,6 +146,13 @@ if ($_POST['gender'] && $_POST['bdate']) {
     } else {
         echo "user info done\n";
         mysql_close($con);
+        $_SESSION['gender']=$_POST['gender'];
+        $_SESSION['address']=$_POST['address'];
+        $_SESSION['firstname']=$_POST['fname'];
+        $_SESSION['lastname']=$_POST['lname'];
+        $_SESSION['email']=$_POST['email'];
+        $_SESSION['birth']=$_POST['bdate'];
+        $_SESSION['picurl']=$_POST['purl'];
         header("Location: /profile.php");
         exit;
     }
